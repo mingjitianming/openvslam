@@ -8,6 +8,26 @@
 namespace openvslam {
 namespace camera {
 
+/**
+ * @brief      构造perspective对象
+ *
+ * @param[in]  name              The name
+ * @param[in]  setup_type        The setup type
+ * @param[in]  color_order       The color order
+ * @param[in]  cols              The cols
+ * @param[in]  rows              The rows
+ * @param[in]  fps               The fps
+ * @param[in]  fx                The effects
+ * @param[in]  fy                { parameter_description }
+ * @param[in]  cx                { parameter_description }
+ * @param[in]  cy                { parameter_description }
+ * @param[in]  k1                The k 1
+ * @param[in]  k2                The k 2
+ * @param[in]  p1                The p 1
+ * @param[in]  p2                The p 2
+ * @param[in]  k3                The k 3
+ * @param[in]  focal_x_baseline  The focal x baseline
+ */
 perspective::perspective(const std::string& name, const setup_type_t& setup_type, const color_order_t& color_order,
                          const unsigned int cols, const unsigned int rows, const double fps,
                          const double fx, const double fy, const double cx, const double cy,
@@ -30,6 +50,11 @@ perspective::perspective(const std::string& name, const setup_type_t& setup_type
     inv_cell_height_ = static_cast<double>(num_grid_rows_) / (img_bounds_.max_y_ - img_bounds_.min_y_);
 }
 
+/**
+ * @brief      使用YAML构造perspective对象
+ *
+ * @param[in]  yaml_node  The yaml node
+ */
 perspective::perspective(const YAML::Node& yaml_node)
     : perspective(yaml_node["Camera.name"].as<std::string>(),
                   load_setup_type(yaml_node),

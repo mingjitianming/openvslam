@@ -73,7 +73,7 @@ config::config(const YAML::Node& yaml_node, const std::string& config_file_path)
 
     spdlog::debug("load depth threshold");
     if (camera_->setup_type_ == camera::setup_type_t::Stereo || camera_->setup_type_ == camera::setup_type_t::RGBD) {
-        // ベースライン長の一定倍より遠いdepthは無視する
+        // 忽略大于基线长度depth_thr_factor倍数的点
         const auto depth_thr_factor = yaml_node_["depth_threshold"].as<double>(40.0);
 
         switch (camera_->model_type_) {
