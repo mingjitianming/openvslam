@@ -20,7 +20,7 @@ void map_database_io::save_message_pack(const std::string& path) {
     std::lock_guard<std::mutex> lock(data::map_database::mtx_database_);
 
     assert(cam_db_ && map_db_);
-    const auto cameras = cam_db_->to_json();
+    const auto cameras = cam_db_->to_json(); // 将camera属性写入文档
     nlohmann::json keyfrms;
     nlohmann::json landmarks;
     map_db_->to_json(keyfrms, landmarks);

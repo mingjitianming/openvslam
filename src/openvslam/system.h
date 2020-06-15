@@ -100,9 +100,18 @@ public:
 
     //-----------------------------------------
     // data feeding methods
+    
+    /**
+     * @brief      Feed a monocular frame to SLAM system
+     *
+     * @param[in]  img        The image
+     * @param[in]  timestamp  The timestamp
+     * @param[in]  mask       The mask
+     *
+     * @return     pose of frame
+     * @note       distorted images are acceptable if calibrated)
+     */
 
-    //! Feed a monocular frame to SLAM system
-    //! (NOTE: distorted images are acceptable if calibrated)
     Mat44_t feed_monocular_frame(const cv::Mat& img, const double timestamp, const cv::Mat& mask = cv::Mat{});
 
     //! Feed a stereo frame to SLAM system
